@@ -1,0 +1,12 @@
+.DS_store
+
+# Dirs
+qcow_images/*
+!qcow_images/.keep
+docker_images/*
+!docker_images/.keep
+keep_local/*
+!keep_local/.keep
+
+vrnetlab/
+.task/
