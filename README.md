@@ -3,6 +3,7 @@
 ## Prerequisites
 - A Digital Ocean account
 - Have the API key in your environment variable as `DIGITALOCEAN_ACCESS_TOKEN`
+- [task](https://taskfile.dev/installation/) installed on your local machine
 
 
 # Images
