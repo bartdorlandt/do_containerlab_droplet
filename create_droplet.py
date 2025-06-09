@@ -23,7 +23,7 @@ def main() -> None:
         snap_id = snapshots["snapshots"][0]["id"]
     else:
         rprint("snapshots:", snapshots)
-        snap_id = input("Which ID of the snapshot do you want to create a droplet for?")
+        snap_id = input("Which ID of the snapshots do you want to create a droplet for?  ")
         # verify
         for snap in snapshots["snapshots"]:
             if snap["id"] == snap_id:
@@ -40,7 +40,7 @@ def main() -> None:
         size=env("droplet_size", "s-1vcpu-1gb"),
         image=snap_id,
     )
-    droplet_id = droplet["droplet"][0]["id"]
+    droplet_id = droplet["droplet"]["id"]
 
     status = None
     while status != "active":
@@ -55,7 +55,7 @@ def main() -> None:
 
     rprint("Droplet created successfully.", droplet_status)
     print("Droplet creation completed.")
-    print("Droplet IP address:", ip)
+    print(f"Droplet ID: {droplet_id} IP address: {ip}")
 
 
 if __name__ == "__main__":
