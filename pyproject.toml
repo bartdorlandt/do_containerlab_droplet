@@ -1,0 +1,44 @@
+[project]
+name = "droplets-scripts"
+version = "0.1.0"
+description = "A collection of Python scripts to manage Digital Ocean droplets."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["environs>=14.2.0", "pydo>=0.11.0", "rich>=14.0.0"]
+
+[dependency-groups]
+dev = ["ruff>=0.11.13"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+extend-exclude = [".git", "__pycache__", "dist", "build", ".venv", "test_*"]
+
+[tool.ruff.lint]
+extend-ignore = ["D103", "D203", "D213", "PLR2004"]
+extend-select = [
+    # pycodestyle Google style
+    "D",
+    # pycodestyle errors and warnings
+    "E",
+    "W",
+    # mccabe
+    "C90",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # pylint
+    "PL",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # flake8-bandit
+    "S",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"

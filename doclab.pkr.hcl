@@ -35,6 +35,8 @@ source "digitalocean" "clab" {
   size          = var.size
   ssh_username  = "root"
   snapshot_name = "clab-devenv-${formatdate("YYYY_MM_DD, hh:mm", timestamp())}"
+  tags          = ["clab"]
+  snapshot_tags = ["clab"]
 }
 
 build {
@@ -46,10 +48,6 @@ build {
     # This local directory must exist. mkdir -p docker_images
     source      = "./docker_images"
     destination = "/root/docker_images/"
-  }
-
-  provisioner "shell" {
-    script = "scripts/pre.sh"
   }
 
   provisioner "shell" {
