@@ -1,5 +1,9 @@
 #!/bin/bash
 
+wait_for_lock() {
+  while lsof $1 ; do sleep 15; done;
+}
+wait_for_lock "/var/lib/dpkg/lock-frontend"
 # https://containerlab.dev/install/
 curl -sL https://containerlab.dev/setup | sudo -E bash -s "all"
 

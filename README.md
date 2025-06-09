@@ -48,3 +48,16 @@ This can be used to create a new droplet allowing you to quickly spin up a new l
 # Next steps
 
 With the snapshot created, you can now create a new droplet using the snapshot.
+
+# Python scripts
+
+The project uses `uv` to run the python scripts.
+
+The purpose of the main scripts are:
+
+* `create_droplet.py`
+  * Creates a new droplet based on a snapshot of choice
+* `shut_save_delete.py`
+  * Shuts down the droplet, saves the state as a snapshot and deletes the droplet. With the idea of saving some money while not using the droplet.
+    * Note: It will ask to delete the droplet. It is not mandatory to delete the droplet.
+

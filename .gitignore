@@ -10,3 +10,7 @@ keep_local/*
 
 vrnetlab/
 .task/
+.vscode/
+
+# python
+**/__pycache__/
