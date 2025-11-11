@@ -4,6 +4,7 @@
 - A Digital Ocean account
 - Have the API key in your environment variable as `DIGITALOCEAN_ACCESS_TOKEN`
 - [task](https://taskfile.dev/installation/) installed on your local machine
+- cp `env.example` to `.env` and adjust the variables as needed
 
 
 # Images
@@ -36,11 +37,21 @@ Any `.tar.gz` file in the `docker_images` folder will be loaded into the droplet
 
 > Note: this is being pushed from your local machine to the droplet, so make sure you have enough bandwidth.
 
+## Creating the snapshot
+To create the image stored as a snapshot, run:
+
+    task build
+
+This will use the variables from the `.env` file to create the droplet in the specified region and size.
+
+This will create a new droplet, install everything according to the specs and load the images from the `docker_images` folder into the local Docker registry. Finally, it will create a snapshot of the droplet and delete the droplet.
+
 # End result
 The end result is a Digital Ocean snapshot that contains the following:
 
 * containerlab installed
 * task installed
+* uv installed
 * the provided images preloaded into the local Docker registry
 
 This can be used to create a new droplet allowing you to quickly spin up a new lab environment with the images you need.
@@ -61,3 +72,4 @@ The purpose of the main scripts are:
   * Shuts down the droplet, saves the state as a snapshot and deletes the droplet. With the idea of saving some money while not using the droplet.
     * Note: It will ask to delete the droplet. It is not mandatory to delete the droplet.
 
+> Note: these scripts also read the .env file for variables like region and size.

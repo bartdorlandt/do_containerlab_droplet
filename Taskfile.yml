@@ -19,14 +19,9 @@ tasks:
       - brew install hashicorp/tap/packer
 
   build:
-    desc: Build the Packer image
+    desc: Build the Packer image with default settings from .env
     cmds:
       - packer build .
-
-  build:4cup16g:
-    desc: Build the Packer image with 4 vCPUs and 16GB RAM
-    cmds:
-      - packer build -var='size=s-4vcpu-16gb-amd' .
 
   junos:download:
     desc: Download a Junos vRouter image
