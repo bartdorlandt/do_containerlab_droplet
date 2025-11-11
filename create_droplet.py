@@ -36,8 +36,8 @@ def main() -> None:
 
     droplet = d.create_droplet(
         name=f"clab.{snap_id}",
-        region=env("droplet_region", "ams3"),
-        size=env("droplet_size", "s-1vcpu-1gb"),
+        region=env("region"),
+        size=env("size"),
         image=snap_id,
     )
     droplet_id = droplet["droplet"]["id"]

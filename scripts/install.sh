@@ -21,3 +21,6 @@ apt-get install -y curl git
 # task
 sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
 task --completion bash > /etc/bash_completion.d/task
+
+# uv
+curl -LsSf https://astral.sh/uv/install.sh | sh

@@ -14,13 +14,12 @@ variable "do_token" {
 
 variable "region" {
   type    = string
-  default = "ams3"
+  default = env("region")
 }
 
 variable "size" {
   type    = string
-  default = "s-1vcpu-1gb"
-  # size         = "s-4vcpu-16gb-amd"
+  default = env("size")
 }
 
 variable "image" {
