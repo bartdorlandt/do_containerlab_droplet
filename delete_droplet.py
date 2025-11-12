@@ -5,13 +5,13 @@ import sys
 
 from rich import print as rprint
 
+import list_droplets
 from api import dolib
 
 
 def main() -> None:
-    droplet = d.delete_droplet(droplet_id=droplet_id)
-
-    rprint("Droplet deleted:", droplet)
+    print(f"Droplet to delete: {droplet_id}")
+    d.delete_droplet(droplet_id=droplet_id)
     print("Droplet deletion completed.")
 
 
@@ -21,6 +21,6 @@ if __name__ == "__main__":
     droplet_id = sys.argv[1] if len(sys.argv) > 1 else None
     if not droplet_id:
         print("Usage: delete_droplet.py <droplet_id>")
-        rprint(d.get_droplets())
+        list_droplets.main()
         sys.exit(1)
     main()

@@ -15,8 +15,9 @@ wait_for_lock "/var/lib/dpkg/lock-frontend"
 DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yq
 
 wait_for_lock "/var/lib/dpkg/lock-frontend"
-apt-get install -y curl git
-
+apt-get install -y curl git direnv bash-completion jq yq ripgrep tmux
+apt-get -y dist-upgrade
+snap install atuin
 
 # task
 sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
