@@ -3,15 +3,13 @@
 
 import sys
 
-from rich import print as rprint
-
+import list_snapshots
 from api import dolib
 
 
 def main() -> None:
-    snapshot = d.delete_snapshot(snapshot_id=snapshot_id)
-
-    rprint("Snapshot deleted:", snapshot)
+    print(f"Snapshot to delete : {snapshot_id}")
+    d.delete_snapshot(snapshot_id=snapshot_id)
     print("Snapshot deletion completed.")
 
 
@@ -21,6 +19,6 @@ if __name__ == "__main__":
     snapshot_id = sys.argv[1] if len(sys.argv) > 1 else None
     if not snapshot_id:
         print("Usage: delete_snapshot.py <snapshot_id>")
-        rprint(d.get_snapshots())
+        list_snapshots.main()
         sys.exit(1)
     main()
