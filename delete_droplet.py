@@ -3,8 +3,6 @@
 
 import sys
 
-from rich import print as rprint
-
 import list_droplets
 from api import dolib
 
