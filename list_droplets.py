@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
 """List all droplets."""
 
-from rich import print as rprint
-
 from api import dolib
 
 
 def main():
     d = dolib.Do()
     d.get_client()
-    # date fformat = "%Y-%m-%d %H:%M:%S"
     droplets = d.get_droplets()
-    rprint("droplets:", droplets)
+    for d in droplets.get("droplets", []):
+        print(
+            f"name: {d['name']} \t"
+            f"id: {d['id']} \t"
+            f"status: {d['status']} \t"
+            f"vCPUs: {d['vcpus']} \t"
+            f"memory: {d['memory']}"
+        )
 
 
 if __name__ == "__main__":

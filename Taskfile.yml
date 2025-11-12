@@ -2,6 +2,9 @@
 
 version: "3"
 
+dotenv:
+  - .env
+
 vars:
   DOCKERIMAGES: docker_images
   QCOWIMAGES: qcow_images
@@ -21,7 +24,11 @@ tasks:
   build:
     desc: Build the Packer image with default settings from .env
     cmds:
-      - packer build .
+      - packer build -var='size={{.size}}' -var='region={{.region}}' .
+    requires:
+      vars:
+        - size
+        - region
 
   junos:download:
     desc: Download a Junos vRouter image
@@ -82,3 +89,21 @@ tasks:
         platforms: [linux, windows]
       - cmd: echo "Run the `task tar2targz` to convert the downloaded .tar to .tar.gz"
         silent: true
+
+  add_ip_to_ssh_config:
+    desc: Add the droplet IP to the SSH config file
+    silent: true
+    cmds:
+      - |
+        read -p "Enter the droplet IP address: " DROPLETIP
+        echo "" >> ~/.ssh/config.d/do
+        echo "Host $DROPLETIP" >> ~/.ssh/config.d/do
+        echo "    HostName %h" >> ~/.ssh/config.d/do
+        echo "    Port 22" >> ~/.ssh/config.d/do
+        echo "    User root" >> ~/.ssh/config.d/do
+        echo "    # LocalForward 3000 127.0.0.1:3000" >> ~/.ssh/config.d/do
+        echo "    # DynamicForward 9999" >> ~/.ssh/config.d/do
+        echo "" >> ~/.ssh/config.d/do
+        echo "Added $DROPLETIP to ~/.ssh/config.d/do"
+        echo "You can now connect using: ssh $DROPLETIP"
+    interactive: true
