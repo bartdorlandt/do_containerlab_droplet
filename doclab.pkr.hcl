@@ -14,12 +14,12 @@ variable "do_token" {
 
 variable "region" {
   type    = string
-  default = env("region")
+  # default = env("region")
 }
 
 variable "size" {
   type    = string
-  default = env("size")
+  # default = env("size")
 }
 
 variable "image" {

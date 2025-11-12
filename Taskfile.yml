@@ -2,6 +2,9 @@
 
 version: "3"
 
+dotenv:
+  - .env
+
 vars:
   DOCKERIMAGES: docker_images
   QCOWIMAGES: qcow_images
@@ -21,7 +24,11 @@ tasks:
   build:
     desc: Build the Packer image with default settings from .env
     cmds:
-      - packer build .
+      - packer build -var='size={{.size}}' -var='region={{.region}}' .
+    requires:
+      vars:
+        - size
+        - region
 
   junos:download:
     desc: Download a Junos vRouter image
